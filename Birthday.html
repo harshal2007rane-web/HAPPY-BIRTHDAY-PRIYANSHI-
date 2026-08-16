@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Bestie 💌</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+
+    font-family:Arial,sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 10%,#ffd0df,transparent 30%),
+        radial-gradient(circle at 90% 30%,#ffc4d7,transparent 32%),
+        linear-gradient(135deg,#ffdce7,#fff0f4,#ffd4e1);
+
+    color:#704353;
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart{
+    position:fixed;
+
+    color:#e86f93;
+
+    opacity:.3;
+
+    font-size:20px;
+
+    animation:float 6s ease-in-out infinite;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(20px) rotate(-8deg);
+    }
+
+    50%{
+        transform:translateY(-30px) rotate(8deg);
+    }
+
+}
+
+
+/* =========================
+   OPENING SCREEN
+========================= */
+
+.opening{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffeaf0,
+            #ffd1df
+        );
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+
+}
+
+.opening.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+}
+
+
+/* OPEN BOX */
+
+.open-box{
+
+    width:100%;
+
+    max-width:380px;
+
+    padding:30px 20px;
+
+}
+
+
+/* ENVELOPE */
+
+.envelope{
+
+    position:relative;
+
+    width:250px;
+
+    height:170px;
+
+    margin:0 auto;
+
+    cursor:pointer;
+
+    filter:
+        drop-shadow(
+            0 18px 25px #b9476935
+        );
+
+    transition:.3s;
+
+}
+
+.envelope:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.02);
+
+}
+
+
+/* envelope body */
+
+.envelope-body{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#fff7fa;
+
+    border-radius:8px;
+
+    border:2px solid #f2b9c9;
+
+    overflow:hidden;
+
+}
+
+
+/* envelope side folds */
+
+.envelope-body:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:0;
+    height:0;
+
+    border-top:
+        85px solid transparent;
+
+    border-right:
+        125px solid #f8d7e1;
+
+}
+
+.envelope-body:after{
+
+    content:"";
+
+    position:absolute;
+
+    right:0;
+
+    bottom:0;
+
+    width:0;
+    height:0;
+
+    border-top:
+        85px solid transparent;
+
+    border-left:
+        125px solid #f8d7e1;
+
+}
+
+
+/* envelope flap */
+
+.flap{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:0;
+    height:0;
+
+    border-left:
+        125px solid transparent;
+
+    border-right:
+        125px solid transparent;
+
+    border-top:
+        88px solid #ed9eb5;
+
+    transform-origin:top;
+
+    transition:
+        transform .8s ease;
+
+    z-index:5;
+
+}
+
+
+/* OPEN ANIMATION */
+
+.envelope.open .flap{
+
+    transform:
+        rotateX(180deg);
+
+}
+
+
+/* HEART SEAL */
+
+.seal{
+
+    position:absolute;
+
+    left:50%;
+    top:48%;
+
+    transform:translate(-50%,-50%);
+
+    width:55px;
+    height:55px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#df6689;
+
+    color:white;
+
+    font-size:27px;
+
+    box-shadow:
+        0 7px 20px #b6426438;
+
+    z-index:10;
+
+    transition:.4s;
+
+}
+
+.envelope.open .seal{
+
+    opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.5);
+
+}
+
+
+/* OPEN TEXT */
+
+.open-title{
+
+    margin-top:28px;
+
+    font-family:Georgia,serif;
+
+    font-size:30px;
+
+    color:#9e4563;
+
+}
+
+.open-sub{
+
+    margin-top:10px;
+
+    color:#a26879;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    max-width:720px;
+
+    margin:auto;
+
+    padding:
+        40px 18px 70px;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    text-align:center;
+
+    padding:
+        30px 0 40px;
+
+}
+
+.hero small{
+
+    font-size:10px;
+
+    letter-spacing:5px;
+
+    color:#bd637e;
+
+}
+
+.hero h1{
+
+    margin-top:15px;
+
+    font-family:Georgia,serif;
+
+    font-size:46px;
+
+    line-height:1.1;
+
+    color:#9d4562;
+
+}
+
+.hero h1 span{
+
+    color:#df5c82;
+
+}
+
+.hero p{
+
+    margin:18px auto 0;
+
+    max-width:450px;
+
+    color:#9c6879;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letter{
+
+    position:relative;
+
+    background:#fffafb;
+
+    padding:
+        55px 38px
+        45px;
+
+    border-radius:6px;
+
+    border:1px solid #f2cdd8;
+
+    box-shadow:
+        0 25px 65px #b4486b30;
+
+}
+
+
+/* ribbon */
+
+.ribbon{
+
+    position:absolute;
+
+    top:-14px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+        8px 23px;
+
+    background:#df6b8c;
+
+    color:white;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    box-shadow:
+        0 7px 18px #b4486a35;
+
+}
+
+
+/* paper lines */
+
+.letter:after{
+
+    content:"";
+
+    position:absolute;
+
+    left:25px;
+    right:25px;
+
+    top:115px;
+    bottom:30px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 30px,
+            #f1dce2 31px
+        );
+
+    opacity:.4;
+
+    pointer-events:none;
+
+}
+
+.letter-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.dear{
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size:25px;
+
+    color:#a44d69;
+
+    margin-bottom:25px;
+
+}
+
+.letter p{
+
+    font-family:
+        "Comic Sans MS",
+        "Segoe Print",
+        cursive;
+
+    font-size:15px;
+
+    line-height:2;
+
+    color:#785363;
+
+    margin-bottom:17px;
+
+}
+
+.highlight{
+
+    margin:25px 0;
+
+    padding:
+        18px 20px;
+
+    border-left:
+        4px solid #e87898;
+
+    background:#ffeaf0;
+
+    color:#a34e6b;
+
+    font-family:
+        "Comic Sans MS",
+        cursive;
+
+    line-height:1.8;
+
+}
+
+.signature{
+
+    margin-top:30px;
+
+    text-align:right;
+
+    font-family:
+        "Comic Sans MS",
+        cursive;
+
+    color:#d65c80;
+
+    font-size:20px;
+
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+
+    text-align:center;
+
+    margin-top:45px;
+
+}
+
+.final-heart{
+
+    font-size:38px;
+
+    animation:beat 1.5s infinite;
+
+}
+
+@keyframes beat{
+
+    50%{
+        transform:scale(1.2);
+    }
+
+}
+
+.final p{
+
+    margin-top:10px;
+
+    color:#ae7183;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .envelope{
+
+        width:230px;
+
+        height:155px;
+
+    }
+
+    .flap{
+
+        border-left-width:115px;
+        border-right-width:115px;
+        border-top-width:80px;
+
+    }
+
+    .envelope-body:before{
+
+        border-right-width:115px;
+
+    }
+
+    .envelope-body:after{
+
+        border-left-width:115px;
+
+    }
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+    .letter{
+
+        padding:
+            48px 22px
+            35px;
+
+    }
+
+    .letter p{
+
+        font-size:14px;
+
+        line-height:1.9;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     FLOATING HEARTS
+========================= -->
+
+<div class="heart" style="left:7%;top:20%">♥</div>
+<div class="heart" style="left:90%;top:28%;animation-delay:1s">♥</div>
+<div class="heart" style="left:12%;top:70%;animation-delay:2s">♡</div>
+<div class="heart" style="left:88%;top:78%;animation-delay:3s">♥</div>
+
+
+<!-- =========================
+     OPENING
+========================= -->
+
+<div class="opening" id="opening">
+
+    <div class="open-box">
+
+        <div
+            class="envelope"
+            id="envelope"
+            onclick="openLetter()">
+
+            <div class="envelope-body"></div>
+
+            <div class="flap"></div>
+
+            <div class="seal">
+                💌
+            </div>
+
+        </div>
+
+
+        <h1 class="open-title">
+            A Letter For You 💗
+        </h1>
+
+        <p class="open-sub">
+            Tap the envelope to open
+            your birthday letter ✨
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="container">
+
+
+<section class="hero">
+
+    <small>
+        A LITTLE LETTER FOR YOU
+    </small>
+
+    <h1>
+
+        Happy Birthday
+
+        <br>
+
+        <span>
+            Priyanshi 💗
+        </span>
+
+    </h1>
+
+    <p>
+
+        Not a normal birthday wish...
+        just a little letter for
+        my best friend. 🫶
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     LETTER
+========================= -->
+
+<section class="letter">
+
+    <div class="ribbon">
+        FOR MY BESTIE 💌
+    </div>
+
+
+    <div class="letter-content">
+
+        <div class="dear">
+            Dear Bestie,
+        </div>
+
+
+        <p>
+
+            Happy Birthday! 🎂💗
+
+        </p>
+
+
+        <p>
+
+            Honestly, I don't know how to write
+            the perfect birthday message for you.
+
+            So I'll just write what I actually mean.
+
+        </p>
+
+
+        <p>
+
+            I'm genuinely glad that you're my best
+            friend. Life is definitely more fun with
+            all our random conversations, stupid
+            jokes, teasing, laughing and those
+            completely unnecessary discussions. 😂
+
+        </p>
+
+
+        <p>
+
+            Some people come into our lives and
+            become memories.
+
+            But some people become a part of
+            our everyday life.
+
+            And you're definitely one of those people.
+
+        </p>
+
+
+        <div class="highlight">
+
+            You are not just my friend...
+
+            <br>
+
+            You're my <b>BEST FRIEND</b> —
+            the person with whom even the most
+            ordinary moments become memorable. 💗
+
+        </div>
+
+
+        <p>
+
+            On your birthday, I just want to wish
+            you lots of happiness, success,
+            beautiful memories and countless
+            reasons to smile.
+
+        </p>
+
+
+        <p>
+
+            I hope this new year of your life
+            brings you everything you've been
+            wishing for.
+
+        </p>
+
+
+        <p>
+
+            Keep smiling.
+
+            <br>
+
+            Keep shining.
+
+            <br>
+
+            And most importantly...
+
+            <br>
+
+            keep being the same crazy,
+            genuine and amazing person
+            you are. ✨
+
+        </p>
+
+
+        <p>
+
+            And yes...
+
+            no matter how much we grow up,
+
+            <br>
+
+            <b>the bakchodi is staying forever. 😂</b>
+
+        </p>
+
+
+        <p>
+
+            Thank you for all the laughs,
+            memories and random moments.
+
+            Here's to many more.
+
+        </p>
+
+
+        <div class="signature">
+
+            With lots of friendship,
+
+            <br>
+
+            Your Bestie 🫶
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+    <div class="final-heart">
+        💗
+    </div>
+
+    <p>
+        BEST FRIENDS • NO EXPIRY DATE ♾️
+    </p>
+
+</section>
+
+
+</div>
+
+
+<script>
+
+function openLetter(){
+
+    const envelope =
+        document.getElementById("envelope");
+
+    const opening =
+        document.getElementById("opening");
+
+
+    /* OPEN ENVELOPE */
+
+    envelope.classList.add("open");
+
+
+    /* WAIT FOR ANIMATION */
+
+    setTimeout(()=>{
+
+        opening.classList.add("hide");
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    },900);
+
+}
+
+</script>
+
+</body>
+</html>
